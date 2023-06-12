@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Clasificador de Imágenes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Clasificador de Herramientas</h1>
+        <div class="content">
+            <form id="upload-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-wrapper">
+                    <label for="file-input">Elegir archivo:</label>
+                    <input type="file" id="file-input" name="image">
+                    <img id="image-preview" src="#" alt="Vista previa de la imagen" style="display: none;">
+                </div>
+                <div class="input-wrapper">
+                    <label for="url-input">Ingresar URL de la imagen:</label>
+                    <input type="text" id="url-input" name="image_url"
+                        placeholder="Ejemplo: https://www.example.com/image.jpg">
+                </div>
+                <button type="button" id="submit-button" class="file-button">Enviar</button>
+            </form>
+        </div>
+        <div class="result-header">Resultado de la clasificación:</div>
+        <div id="result"></div>
+        <div class="footer">
+            <ul class="integrantes">
+                <li>Integrantes del grupo:</li>
+                <li>★ Lukas Poffal</li>
+                <li>★ Catalina Ponce</li>
+                <li>★ Marcelo Tapia</li>
+                <li>★ David Uribe</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#file-input').change(function (event) {
+                var input = event.target;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#image-preview').attr('src', e.target.result);
+                        $('#image-preview').show();
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
+
+            $('#submit-button').click(function () {
+                var formData = new FormData($('#upload-form')[0]);
+                $.ajax({
+                    url: "{% url 'upload' %}",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        var probability = (data.confidence * 100).toFixed(2);
+                        var resultText = 'Clase: ' + data.predicted_label + ', Probabilidad: ' + probability + '%';
+                        $('#result').text(resultText);
+                    },
+                    error: function () {
+                        $('#result').text('Error al procesar la imagen.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

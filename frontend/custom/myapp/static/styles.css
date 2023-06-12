@@ -1,0 +1,140 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('fonts/NetflixSansBold.ttf') format('truetype');
+}
+
+body {
+    background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url("images/taller.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: blanchedalmond;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'MyFont';
+}
+
+h1::before {
+    content: url('icons/herramientas.png');
+    filter: brightness(0) invert(1);
+    margin-right: 10px;
+}
+
+h1::after {
+    content: url('icons/herramientas.png');
+    filter: brightness(0) invert(1);
+    margin-left: 10px;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.input-wrapper {
+    color: blanchedalmond;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="file"],
+input[type="text"] {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: blanchedalmond;
+    width: 99%;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+}
+
+.file-button {
+    display: block;
+    border-radius: 10px;
+    width: 60px;
+    justify-content: center;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilos del resultado */
+.result-header {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    color: blanchedalmond;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#result {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: blanchedalmond;
+    margin-top: 10px;
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+
+#image-preview {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+}
+
+/* Estilos del pie de página */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.61);
+    border-radius: 8px;
+    color: blanchedalmond;
+    padding: 10px;
+}
+
+.integrantes {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.integrantes li {
+    margin-bottom: 5px;
+}
